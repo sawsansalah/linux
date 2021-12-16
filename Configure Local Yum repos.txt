@@ -1,0 +1,34 @@
+Nautilus production support team and security team had a meeting last month in which they decided to use local yum repositories for maintaing packages needed for their servers. For now they have decided to configure a local yum repo on Nautilus Backup Server. This is one of the pending item from last month so please configure a local yum repository on Nautilus Backup Server as per details given below.
+
+
+a. We have some packages already present at location /packages/downloaded_rpms/ on Nautilus Backup Server.
+
+b. Create a yum repo named yum_local and make sure to set Repository ID to yum_local. Configure it to use packages location /packages/downloaded_rpms/.
+
+c. Install package wget from this newly created repo.
+
+    1  cd /packages/downloaded_rpms/
+    2  ls
+    3  cd /etc/yum.repos.d/
+    4  ls
+    5  yum install wget  - we get error here 
+    6  sudo yum install wget
+    7  cd /etc/yum.repos.d/    --FROM HERE THE STEPS ARE STARTED
+    8  sudo vi yum_local.repo  --WE CREATED REPO FILE
+
+[yum_local]
+Name=yum_local
+baseurl=file:///packages/downloaded_rpms/
+enabled=1
+gpgcheck=0
+
+    9  sudo yum clean all    --IT CLEANS ALL ENABLED DATA
+   10  sudo yum instal wget
+   11  sudo yum install wget
+
+
+NOTE:
+====
+
+
+yum install vim-enhanced -y
